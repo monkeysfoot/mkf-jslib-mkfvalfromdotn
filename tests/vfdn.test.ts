@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest'
 
-import { vfdn } from '../src'
+import { vfdn, vtdn } from '../src'
 
 describe('valueFromDotNotation tests', ()=> {
 
@@ -28,6 +28,23 @@ describe('valueFromDotNotation tests', ()=> {
             }
         }
 
+    })
+
+})
+
+describe('valueToDotNotation tests', () => {
+
+    test.each([
+        {key: 'wigs', value: 'ondogs', expected: true},
+        {key: 'frost.snow', value: 8765, expected: true},
+    ])('valueToDotnotation - expected: $expected', ({ key, value, expected }) => {
+
+        const obj = {}
+        expect(vfdn(key, obj)).toBeUndefined
+        expect(vtdn(key, obj, value)).toStrictEqual(expected)
+        expect(vfdn(key, obj)).toStrictEqual(value)
+
+        console.log(JSON.stringify(obj, null, 4))
     })
 
 })

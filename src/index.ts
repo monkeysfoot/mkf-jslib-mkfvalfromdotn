@@ -24,4 +24,30 @@ const valueFromDotNotation = (path: string, itm: Record<string, any>, delim: str
     return undefined
 }
 
-export {valueFromDotNotation, valueFromDotNotation as vfdn, valueFromDotNotation as default}
+const valueToDotNotation = (path: string, itm: Record<string, any>, value: any, delim: string = '.'): boolean => {
+    const vals = path.split(delim)
+    let ob: Record<string, any> = itm
+    while (vals.length > 0) {
+
+        const thename = vals.shift()
+
+        if (thename === undefined) {
+            throw new Error('valueToDotnotation - expected: $expected')
+        }
+
+        if(vals.length === 0) {
+            ob[thename] = value
+            return true
+        } else {
+            if(ob[thename] === undefined) {
+                ob[thename] = {}
+            }
+            if (typeof ob[thename] === 'object') {
+                ob = ob[thename]
+            }
+        }
+    }
+    return false
+}
+
+export {valueFromDotNotation, valueFromDotNotation as vfdn, valueFromDotNotation as default, valueToDotNotation, valueToDotNotation as vtdn}
