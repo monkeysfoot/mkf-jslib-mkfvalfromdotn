@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest'
 
-import { vfdn, vtdn } from '../src'
+import { vfdn, vtdn, hasValue } from '../src'
 
 describe('valueFromDotNotation tests', ()=> {
 
@@ -47,4 +47,21 @@ describe('valueToDotNotation tests', () => {
         console.log(JSON.stringify(obj, null, 4))
     })
 
+})
+
+describe ('hasValue', () => {
+    test.each([
+        {key: 'app', obj: {}, expected: false},
+        {key: 'app', obj: {app: 23}, expected: true},
+        {key: 'jerry.springer', obj: {app: 23}, expected: false},
+        {key: 'jerry.springer', obj: {app: 23, jerry: { springer: 'jerry, jerry!'}}, expected: true}
+    ]) ('hasValue - $key - expected: $expected', ({key, obj, expected}) => {
+
+        if (expected) {
+            expect(hasValue(key, obj)).toBeTruthy()
+        } else {
+            expect(hasValue(key, obj)).toBeFalsy()
+        }
+
+    })
 })

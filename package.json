@@ -1,6 +1,6 @@
 {
     "name": "@monkeysfoot/mkfvalfromdotn",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "Extracts a value from js object using dot notation",
     "main": "dist/index.js",
     "type": "module",

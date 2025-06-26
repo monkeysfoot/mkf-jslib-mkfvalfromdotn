@@ -12,6 +12,10 @@ The export is aliased as `vfdn`, and is the default export as well.
 
 This export is aliased as `vtdn`.
 
+`hasValue = (path: string, itm: Record<string, any>, delim: string = '.'): boolean`
+
+This export is aliased as `has`.
+
 ### Usage
 
 given object
@@ -31,7 +35,11 @@ vfdn with path param `test.deeperval` returns `100`
 
 vfdn with path param `idontexist` returns `undefined`
 
-after vtdn with path param `dollars.fordonuts` and value param `"combat rabbit"` the object is now: 
+after vtdn with path param `dollars.fordonuts` and value param `"combat rabbit"` the object is now:
+
+has with path param `idontexist` returns false
+
+has with path param `test.deeperval` returns true
 
 ```
 {
